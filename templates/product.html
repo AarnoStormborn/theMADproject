@@ -1,0 +1,37 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    <title>Products</title>
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+<section class="py-5">
+    <div class="container py-5">
+        <div data-reflow-type="product" data-bss-dynamic-product data-bss-dynamic-product-param="product" data-reflow-shoppingcart-url="shopping-cart.html">
+            <div class="reflow-product">
+                <div class="ref-media">
+                    <div class="ref-preview"><img class="ref-image active" src="https://cdn.bootstrapstudio.io/products/product-30_md.jpg" data-reflow-preview-type="image" /></div>
+                </div>
+                <div class="ref-product-data">
+                    <h2 class="ref-name">{{mobile.brand}} {{mobile.name}}</h2>
+                        <div class="ref-product-controls" style="margin-top: 5%; margin-bottom: 5%;">
+                            <span data-reflow-max-qty="999" data-reflow-quantity="1">
+                                <div class="ref-quantity-widget">
+                                    <div class="ref-decrease"><span></span></div>
+                                    <span><input type="text" value="1"/></span>
+                                    <div class="ref-increase"><span></span></div>
+                                </div>
+                            </span>
+                            <a class="ref-button" href="#" style="margin-left: 5%;">Buy now</a>
+                            <a class="ref-button" href="#" style="margin-left: 0.5%;">Cart +</a>
+                        </div>
+                    <div class="ref-description" style="margin-top: 5%;">{{mobile.storage}} Storage <br> {{mobile.ram}} RAM <br> {{mobile.display_size}} inch {{mobile.display_type}} display <br><br> Processor {{mobile.processor}}</div>
+                    <div class="ref-description" style="margin-top: 5%;">{{mobile.description}}</div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

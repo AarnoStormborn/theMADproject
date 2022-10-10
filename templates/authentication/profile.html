@@ -1,0 +1,104 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    <title>Profile</title>
+{% endblock title %}
+
+{% block content %}
+    {% load static %}
+    <section class="py-5">
+        <div class="container py-1">
+            <div class="row mx-auto" style="max-width: 700px;">
+                <div class="col">
+                    <h2 style="text-align: center; margin-bottom: 5%;">PROFILE</h2>
+                    <div id="accordion">
+                        <div class="card">
+                          <a class="btn btn-light" data-bs-toggle="collapse" href="#profile" role="button" aria-expanded="false" aria-controls="collapseOne" style="border-radius: 0%; border-top: 1px solid gray; border-bottom: 1px solid grey;">
+                            <div id="headingOne">
+                              <h4 class="mb-0" style="padding-top: 3%; padding-bottom: 3%">
+                                Personal Settings
+                              </h4>
+                            </div>
+                          </a>
+                          <div id="profile" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                              <div class="card-body text-center d-flex flex-column align-items-center">
+                                <div class="container">
+                                  <div class="row">  
+                                    <div class="col" style="padding: 1%;"><h5><b>Username:</b> {{user.username}}</h5></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Email:</b> {{user.email}}</h5></div>
+                                    <div class="w-100"></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Name:</b> {{user.first_name}} {{user.last_name}}</h5></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Location:</b> {{profile.location}}</h5></div>
+                                  </div> 
+                                </div>
+                                <div class="row" style="margin-top: 2%; margin-left: 75%;">
+                                  <div class="col">
+                                    <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" href="#profileEdit" role="button" aria-expanded="false" aria-controls="collapseOne">Edit</a>
+                                  </div>
+                                </div>
+                                <div class="modal fade" id="profileEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header justify-content-center">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="card-body text-center d-flex flex-column align-items-center">
+                                          <form action="" method="POST">
+                                              {% csrf_token %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="firstname" placeholder="First Name" value="{{user.first_name}}"></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="lastname" placeholder="Last Name" value="{{user.last_name}}"></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="location" placeholder="City / Country" value="{{profile.location}}"></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" value="{{user.username}}" required></div>
+                                              <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" value="{{user.email}}" required></div>
+                                              <br>
+                                              <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                                          </form>
+                                      </div>
+                                      </div>
+                                      <!-- <div class="modal-footer">
+                                        
+                                      </div> -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card">
+                          <a class="btn btn-light" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo" style="border-radius: 0%; border-bottom: 1px solid grey;">
+                            <div id="headingTwo">
+                              <h5 class="mb-0" style="padding-top: 3%; padding-bottom: 3%">
+                                Collapsible Group Item #1
+                              </h5>
+                            </div>
+                          </a>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" style="padding-top: 2%; padding-bottom: 2%">
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                          </div>
+                        </div>
+                      
+                        <div class="card">
+                          <a class="btn btn-light" data-bs-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree" style="border-radius: 0%; border-bottom: 1px solid grey;">
+                            <div id="headingThree">
+                              <h5 class="mb-0" style="padding-top: 3%; padding-bottom: 3%">
+                                Collapsible Group Item #1
+                              </h5>
+                            </div>
+                          </a>
+                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" style="padding-top: 2%; padding-bottom: 2%">
+                            <div class="card-body">
+                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

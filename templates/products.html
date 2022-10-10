@@ -1,0 +1,44 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    <title>Products</title>
+{% endblock title %}
+    
+{% block content %}
+{% load static %}
+    <section class="py-3">
+        <div class="container py-5">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Products</h2>
+                </div>
+            </div>
+            <!-- search bar -->
+            <div class="input-group mb-5">
+                <input type="text" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" style="width: 20px;">
+                <button class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
+              </div>
+            <div class="row row-cols-1 row-cols-md-3 g-5">
+                <!-- preferred card -->
+                
+                {% for mobile in data %}
+                <div class="col-auto mb-3">
+                  <div class="card">
+                    <img src="{% static 'assets/img/products/1.jpg' %}" class="card-img-top" alt="img" style="border-radius: 5%;">
+                    <div class="card-body">
+                      <a href="{% url 'product' mobile.id %}"><h4 class="card-title">{{mobile.brand}} {{mobile.name}}</h4></a>
+                      <h5>Rs.{{mobile.price}}</h5>
+                      <p class="card-text">{{mobile.storage}} {{mobile.ram}} - {{mobile.display_size}} inch {{mobile.display_type}} display</p>
+                      <button class="btn btn-outline-primary btn-sm update-cart" data-product="{{mobile.id}}" data-action="add" style="margin-top: 2%;margin-left: 65%;">Cart+</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- preferred card -->
+                {% endfor %}
+              </div>
+        </div>
+    </section>
+
+{% endblock content %}
+
+

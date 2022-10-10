@@ -1,0 +1,40 @@
+{% extends 'common/base.html' %}
+
+
+{% block title %}
+    <title>Log in</title>
+{% endblock title %}
+    
+
+{% block content %}
+    {% load static %}    
+
+    <section class="py-5">
+        <div class="container py-1">
+            <div class="row mb-4 mb-lg-5">  
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Login</h2>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4">
+                    <div class="card">
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}" role="alert" style="text-align: center;">{{message}}</div>
+                    {% endfor %}
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" required></div>
+                                <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+                                <br>
+                                <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Log in</button></div>
+                                <p class="text-muted">New? <a href="{% url 'signup' %}"><u>Create an Account</u></a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}

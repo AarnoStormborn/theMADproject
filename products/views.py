@@ -1,0 +1,13 @@
+from django.shortcuts import render
+from .models import Mobile
+
+def products(request):
+    data = Mobile.objects.all()
+    context = {'data':data}
+    return render(request, 'products.html', context)
+
+def product(request, id):
+
+    data = Mobile.objects.get(id=id)
+    context = {'mobile':data}
+    return render(request, 'product.html', context)
