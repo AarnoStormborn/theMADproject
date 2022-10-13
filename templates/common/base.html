@@ -14,7 +14,9 @@
     {% block title %}
         
     {% endblock title %}
-        
+    <script>
+        let user = "{{request.user}}"
+    </script>
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://cdn.reflowhq.com/v2/toolkit.min.css">
@@ -27,9 +29,8 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Buy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Sell</a></li>
                 </ul>
                 
                 {% if request.user.is_authenticated %}
@@ -62,6 +63,11 @@
     <script src="{% static 'assets/js/bs-init.js' %}"></script>
     <script src="{% static 'assets/js/bold-and-bright.js' %}"></script>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+    
+    {% block scripts %}
+        
+    {% endblock scripts %}
+        
 </body>
 
 </html>

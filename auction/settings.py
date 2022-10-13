@@ -41,7 +41,8 @@ DEFAULT_APPS = [
 
 MY_APPS = [
     'authentication.apps.AuthenticationConfig',
-    'products.apps.ProductsConfig'
+    'products.apps.ProductsConfig',
+    'user.apps.UserConfig'
 ]
 
 THIRD_PARTY_APPS = []
