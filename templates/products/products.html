@@ -7,7 +7,7 @@
 {% block content %}
 {% load static %}
     <section class="py-3">
-        <div class="container py-5">
+        <div class="container py-3">
             <div class="row mb-4 mb-lg-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <h2 class="fw-bold">Products</h2>
@@ -22,11 +22,11 @@
                 <!-- preferred card -->
                 
                 {% for mobile in data %}
-                <div class="col-auto mb-3">
-                  <div class="card">
-                    <img src="{% static 'assets/img/products/1.jpg' %}" class="card-img-top" alt="img" style="border-radius: 5%;">
+                <div class="col-auto mb-4">
+                  <div class="card" style="width: 22rem;">
+                    <a href="{% url 'product' mobile.id %}"><img src="{{mobile.imageURL}}" class="card-img-top" alt="img"></a>
                     <div class="card-body">
-                      <a href="{% url 'product' mobile.id %}"><h4 class="card-title">{{mobile.brand}} {{mobile.name}}</h4></a>
+                      <h4 class="card-title">{{mobile.brand}} {{mobile.name}}</h4>
                       <h5>Rs.{{mobile.price}}</h5>
                       <p class="card-text">{{mobile.storage}} {{mobile.ram}} - {{mobile.display_size}} inch {{mobile.display_type}} display</p>
                       <button class="btn btn-outline-primary btn-sm update-cart" data-product="{{mobile.id}}" data-action="add" style="margin-top: 2%;margin-left: 65%;">Cart+</button>

@@ -25,11 +25,11 @@
                               <div class="card-body text-center d-flex flex-column align-items-center">
                                 <div class="container">
                                   <div class="row">  
-                                    <div class="col" style="padding: 1%;"><h5><b>Username:</b> {{user.username}}</h5></div>
-                                    <div class="col" style="padding: 1%;"><h5><b>Email:</b> {{user.email}}</h5></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Username:</b> <p id="userUsername">{{user.username}}</p></h5></div>
                                     <div class="w-100"></div>
-                                    <div class="col" style="padding: 1%;"><h5><b>Name:</b> {{user.first_name}} {{user.last_name}}</h5></div>
-                                    <div class="col" style="padding: 1%;"><h5><b>Location:</b> {{profile.location}}</h5></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Email:</b> <p id="userEmail">{{user.email}}</p></h5></div>
+                                    <div class="w-100"></div>
+                                    <div class="col" style="padding: 1%;"><h5><b>Name:</b> <p id="userFullname">{{user.first_name}} {{user.last_name}}</p></h5></div>
                                   </div> 
                                 </div>
                                 <div class="row" style="margin-top: 2%; margin-left: 75%;">
@@ -45,16 +45,15 @@
                                       </div>
                                       <div class="modal-body">
                                         <div class="card-body text-center d-flex flex-column align-items-center">
-                                          <form action="" method="POST">
+                                          <form action="" method="POST" id="updateProfile">
                                               {% csrf_token %}
-                                              <div class="mb-3"><input class="form-control" type="text" name="firstname" placeholder="First Name" value="{{user.first_name}}"></div>
-                                              <div class="mb-3"><input class="form-control" type="text" name="lastname" placeholder="Last Name" value="{{user.last_name}}"></div>
-                                              <div class="mb-3"><input class="form-control" type="text" name="location" placeholder="City / Country" value="{{profile.location}}"></div>
-                                              <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" value="{{user.username}}" required></div>
-                                              <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" value="{{user.email}}" required></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="firstname" id="fname" placeholder="First Name" value="{{user.first_name}}" required></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="lastname" id="lname" placeholder="Last Name" value="{{user.last_name}}" required></div>
+                                              <div class="mb-3"><input class="form-control" type="text" name="username" id="username" placeholder="Username" value="{{user.username}}" required></div>
+                                              <div class="mb-3"><input class="form-control" type="email" name="email" id="email" placeholder="Email" value="{{user.email}}" required></div>
                                               <br>
                                               <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
-                                              <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                                              <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save changes</button>
                                           </form>
                                       </div>
                                       </div>
@@ -72,13 +71,96 @@
                         <div class="card">
                           <a class="btn btn-light" data-bs-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo" style="border-radius: 0%; border-bottom: 1px solid grey;">
                             <div id="headingTwo">
-                              <h5 class="mb-0" style="padding-top: 3%; padding-bottom: 3%">
-                                Collapsible Group Item #1
-                              </h5>
+                              <h4 class="mb-0" style="padding-top: 3%; padding-bottom: 3%">
+                                Saved Address
+                              </h4>
                             </div>
                           </a>
                           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion" style="padding-top: 2%; padding-bottom: 2%">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <div class="card-body">
+                              <div class="card-body text-center d-flex flex-column align-items-center">
+                                <div class="container">
+                                  <div class="row">  
+                                    
+                                    {% if profile.address1 is None %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Address Line 1:</b> <p id="addressLine1"></p></h5></div>
+                                    {% else %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Address Line 1:</b> <p id="addressLine1">{{profile.address1}}</p></h5></div>  
+                                    {% endif %}
+                                    <div class="w-100"></div>
+
+                                    {% if profile.address2 is None %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Address Line 2:</b> <p id="addressLine2"></p></h5></div>
+                                    {% else %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Address Line 2:</b> <p id="addressLine2">{{profile.address2}}</p></h5></div>
+                                    {% endif %}
+                                    <div class="w-100"></div>
+                                      
+                                    {% if profile.location is None %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Location:</b> <p id="userLocation"></p></h5></div>
+                                    {% else %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Location:</b> <p id="userLocation">{{profile.location}}</p></h5></div>
+                                    {% endif %}
+                                    <div class="w-100"></div>
+                                    
+                                    {% if profile.zipcode is None %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Zipcode:</b> <p id="userZipcode"></p></h5></div>
+                                    {% else %}
+                                    <div class="col" style="padding: 1%;"><h5><b>Zipcode:</b> <p id="userZipcode">{{profile.zipcode}}</p></h5></div>
+                                    {% endif %}
+                                        
+                                  </div>
+                                </div>
+                                <div class="row" style="margin-top: 2%; margin-left: 75%;">
+                                  <div class="col">
+                                    <a class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" href="#detailsEdit" role="button" aria-expanded="false" aria-controls="collapseOne">Add/Edit</a>
+                                  </div>
+                                </div>
+                                <div class="modal fade" id="detailsEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header justify-content-center">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="card-body text-center d-flex flex-column align-items-center">
+                                          <form action="" method="POST" id="updateDetails">
+                                              {% csrf_token %}
+                                              
+                                              {% if profile.address1 is None %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="address1" id="address1" placeholder="Address Line 1" required></div>
+                                              {% else %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="address1" id="address1" placeholder="Address Line 1" value="{{profile.address1}}" required></div>
+                                              {% endif %}
+                                              
+                                              {% if profile.address2 is None %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="address2" id="address2" placeholder="Address Line 2"></div>
+                                              {% else %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="address2" id="address2" placeholder="Address Line 2" value="{{profile.address2}}"></div>
+                                              {% endif %}
+                                              
+                                              {% if profile.location is None %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="location" id="loc" placeholder="Location" required></div>
+                                              {% else %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="location" id="loc" placeholder="Location" value="{{profile.location}}" required></div>
+                                              {% endif %}
+                                              
+                                              {% if profile.zipcode is None %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="zipcode" id="zip" placeholder="Zipcode" required></div>
+                                              {% else %}
+                                              <div class="mb-3"><input class="form-control" type="text" name="zipcode" id="zip" placeholder="Zipcode" value="{{profile.zipcode}}" required></div>
+                                              {% endif %}
+                                                
+                                              <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Save changes</button>
+                                          </form>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       
@@ -102,3 +184,60 @@
         </div>
     </section>
 {% endblock content %}
+
+
+{% block scripts %}
+
+  <script>
+  $("#updateProfile").submit(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      type:"POST",
+      url:"{% url 'updateProfile' %}",
+      data: {
+        firstname:$("#fname").val(),
+        lastname:$("#lname").val(),
+        username:$("#username").val(),
+        email:$("#email").val(),
+      },
+      success: function(response) {
+        document.querySelector("#userUsername").innerHTML = response.profileData.username
+        document.querySelector("#userEmail").innerHTML = response.profileData.email
+        document.querySelector("#userFullname").innerHTML = `${response.profileData.firstname} ${response.profileData.lastname}`
+      },
+      error: function(response) {
+        alert(response.errorMessage)
+      }
+    })
+   })
+
+  $("#updateDetails").submit(function(e) {
+  e.preventDefault();
+
+  $.ajax({
+    type:"POST",
+    url:"{% url 'updateDetails' %}",
+    data: {
+      address1:$("#address1").val(),
+      address2:$("#address2").val(),
+      location:$("#loc").val(),
+      zipcode:$("#zip").val()       
+    },
+    success: function(response) {
+      console.log(response)
+      document.querySelector("#addressLine1").innerHTML = response.userDetails.address1
+      document.querySelector("#addressLine2").innerHTML = response.userDetails.address2
+      document.querySelector("#userLocation").innerHTML = response.userDetails.location
+      document.querySelector("#userZipcode").innerHTML = response.userDetails.zipcode
+    },
+    error: function(response) {
+      alert("Something went wrong")
+    }
+  })
+  })
+  </script>
+
+
+{% endblock scripts %}
+  
