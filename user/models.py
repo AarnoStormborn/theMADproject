@@ -10,14 +10,14 @@ class Order(models.Model):
     complete = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.customer.customer.user.username}:  {self.order_id}"
+        return f"{self.customer.user.username}:  {self.order_id}"
 
     class Meta:
         verbose_name_plural = 'Order'
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Mobile, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
     quantity = models.PositiveIntegerField(blank=True, null=True, default=1)
     date_added = models.DateTimeField(auto_now_add=True)
 
