@@ -5,7 +5,7 @@ class Mobile(models.Model):
 
     name = models.CharField(max_length=40)
     brand = models.CharField(max_length=40)
-    price = models.CharField(max_length=10)
+    price = models.PositiveBigIntegerField()
     storage = models.CharField(max_length=10)
     ram = models.CharField(max_length=10)
     display_type = models.CharField(max_length=40)
@@ -37,9 +37,4 @@ class Mobile(models.Model):
 
     class Meta:
         verbose_name_plural = 'Mobile'
-
-# class Sellers(models.Model):
-
-#     product = models.ForeignKey(Mobile, on_delete=models.SET_NULL, null=False)
-#     seller = models.ForeignKey(UserDetails, on_delete=models.SET_NULL, null=False)
 

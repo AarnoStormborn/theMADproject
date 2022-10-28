@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="ref-total-col">
                                         <div class="ref-product-total">
-                                            <div class="ref-product-total-sum">Rs.{{item.product.price}}</div>
+                                            <div class="ref-product-total-sum">Rs.{{item.get_item_total}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -64,9 +64,9 @@
                             <div class="ref-footer">
                                 <div class="ref-links"></div>
                                 <div class="ref-totals">
-                                    <div class="ref-subtotal">Subtotal: Rs. {{total}}</div>
+                                    <div class="ref-subtotal">Subtotal: Rs. {{order.get_total}}</div>
                                     <div class="ref-row ref-checkout-buttons">
-                                        <div class="ref-button ref-standard-checkout-button">Checkout</div>
+                                        <a href="{% url 'checkout' %}"><div class="ref-button ref-standard-checkout-button">Checkout</div></a>
                                     </div>
                                 </div>
                             </div>

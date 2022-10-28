@@ -5,7 +5,29 @@ for (let i=0; i<updateBtns.length; i++){
     updateBtns[i].addEventListener("click", function(){
         let productId = this.dataset.product;
         let action = this.dataset.action;
-        console.log(`Product Id: ${productId}`)
+        if (user === 'AnonymousUser'){
+            console.log('User not logged in');
+        } else {
+            updateUserOrder(productId, action)
+        }    
     })
-    console.log('User: ', user)
+}
+
+function updateUserOrder(productId, action) {
+
+    let url = '/updatecart'
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({'productId': productId, 'action': action})
+    })
+
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Second THen')
+        console.log('data: ', data)
+    })
 }

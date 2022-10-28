@@ -1,121 +1,148 @@
-<div class="ref-checkout">
-    <div class="ref-checkout-content">
-        <form class="ref-details">
-            <div class="ref-back">← Back to Cart</div>
-            <div class="ref-heading">Customer Details</div><label><span>Email</span><input id="ref-field-email" class="ref-form-control" type="email" name="email" value required data-state-src="email" />
-                <div class="ref-validation-error"></div>
-            </label><label><span>Phone</span><input id="ref-field-phone" class="ref-form-control" type="tel" name="phone" value pattern="[0-9\+\- ]{5,30}" placeholder="+1234567890" required data-state-src="phone" />
-                <div class="ref-validation-error"></div>
-            </label><label class="ref-pickup-customer-name-input"><span>Name</span><input class="ref-form-control" type="text" name="pickup-customer-name" value data-state-src="pickup-customer-name" minlength="5" required />
-                <div class="ref-validation-error"></div>
-            </label>
-            <div class="ref-heading ref-heading-delivery">Delivery</div>
-            <div class="ref-delivery-unavailable"></div>
-            <div class="ref-delivery-card">
-                <div class="ref-tab ref-local-pickup-tab" data-ref-delivery="pickup"><label class="ref-tab-toggle"><input type="radio" value="pickup" name="delivery-method" required />
-                        <div class="ref-heading-small">Pickup at Store</div>
-                    </label>
-                    <fieldset class="ref-tab-content">
-                        <div class="ref-heading-small">Select a Store</div>
-                        <div class="ref-locations ref-error-parent"></div>
-                        <div class="ref-billing-container">
-                            <div class="ref-button ref-add-billing">Add Billing Info</div>
-                            <fieldset class="ref-billing-address" disabled>
-                                <div class="ref-row">
-                                    <div class="ref-heading-small">Billing Address</div>
-                                    <div class="ref-button ref-remove-billing">Remove</div>
+{% extends 'common/base.html' %}
+
+{% block title %}
+    <title>Checkout</title>
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row mx-auto">
+            <div class="col">
+                <div data-reflow-type="shopping-cart">
+                    <div class="reflow-shopping-cart" style="display: block;">
+                        <div class="ref-loading-overlay"></div>
+                        <div class="ref-message" style="display: none;"></div>                     
+                        <div class="ref-checkout" style="display: flex;">
+                            <div class="ref-checkout-content">
+                                <form class="ref-details" style="display: block;">
+                                    <div class="ref-back"><a href="{% url 'userCart' %}"><h6>← Back to Cart</h6></a></div>
+                                    <hr />
+                                    <div class="ref-heading">Customer Details</div>
+                                    <label><span>Email</span><input id="ref-field-email" class="ref-form-control" type="email" name="email" value required data-state-src="email" />
+                                        
+                                    </label><label><span>Phone</span><input id="ref-field-phone" class="ref-form-control" type="tel" name="phone" value pattern="[0-9\+\- ]{5,30}" required data-state-src="phone" />
+                                        
+                                    </label><label class="ref-pickup-customer-name-input" style="display: none;"><span>Name</span><input class="ref-form-control" type="text" name="pickup-customer-name" value data-state-src="pickup-customer-name" minlength="5" required disabled />
+                                        
+                                    </label>
+                                    <div class="ref-heading ref-heading-delivery" style="display: block;">Delivery</div>
+                                    <div class="ref-delivery-unavailable" style="display: none;"></div>
+                                    <div class="ref-delivery-card" style="display: block;">
+                                        <div class="ref-tab ref-local-pickup-tab" data-ref-delivery="pickup" style="display: none;"><label class="ref-tab-toggle"><input type="radio" value="pickup" name="delivery-method" required />
+                                                <div class="ref-heading-small">Pickup at Store</div>
+                                            </label>
+                                            <fieldset class="ref-tab-content">
+                                                <div class="ref-heading-small">Select a Store</div>
+                                                <div class="ref-locations ref-error-parent"></div>
+                                                <div class="ref-billing-container">
+                                                    <div class="ref-button ref-add-billing" style="display: inline-block;">Add Billing Info</div>
+                                                    <fieldset class="ref-billing-address" disabled style="display: none;">
+                                                        <div class="ref-row">
+                                                            <div class="ref-heading-small">Billing Address</div>
+                                                            <div class="ref-button ref-remove-billing">Remove</div>
+                                                        </div>
+                                                        <div class="ref-billing-address-holder"></div>
+                                                    </fieldset>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="ref-tab ref-shipping-tab open" data-ref-delivery="shipping" style="display: block;"><label class="ref-tab-toggle"><input type="radio" value="shipping" name="delivery-method" required />
+                                                <div class="ref-heading-small">Deliver to Address</div>
+                                            </label>
+                                            <fieldset class="ref-tab-content">
+                                                <div class="ref-heading-small">Shipping Address</div>
+                                                <div class="ref-shipping-address-holder">
+                                                    <div class="ref-address-widget">
+                                                        
+                                                        <label><span>Name</span><input class="ref-form-control ref-field-details-name" type="text" value name="shipping-name" data-state-src="shipping-name" required minlength="5" /></label> 
+                                                        <label><span>Address 1</span><input class="ref-form-control ref-field-details-address-line" type="text" name="shipping-address" data-state-src="shipping-address-1" required minlength="5" /></label>
+                                                        <label><span>Address 2</span><input class="ref-form-control ref-field-details-address-line" type="text" name="shipping-address" data-state-src="shipping-address-2" required minlength="5" /></label>
+                                                        <label><span>City</span><input class="ref-form-control ref-field-details-city" type="text" value name="shipping-city" data-state-src="shipping-city" required minlength="2" /></label>
+                                                            <!-- <div class="ref-validation-error"></div> -->
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="ref-heading-shipping-methods ref-heading-small" style="display: none;">Shipping Method</div>
+                                                <div class="ref-shipping-methods ref-error-parent"></div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    
+                                    <div>
+                                        <div class="ref-heading ref-heading-payment" style="display: block;">Payment</div>
+                                        <div class="ref-standard-payment-buttons">
+                                            <div class="ref-button ref-payment-button button-demo-payment" data-method="custom">Bank Transfer</div>
+                                            <div class="ref-button ref-payment-button button-demo-payment" data-method="stripe">Credit Card</div>
+                                            <div class="ref-button ref-payment-button button-demo-payment" data-method="stripe">Apple Pay / Google Pay</div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- <div class="ref-instructions" style="display: none;">
+                                    <div class="ref-heading ref-payment-method-name"></div>
+                                    <div class="ref-payment-method-instructions"></div>
+                                </div> -->
+                            </div>
+                            <div class="ref-checkout-summary">
+                                <div class="ref-heading">Order Summary</div>
+                                <div class="ref-products">
+
+                                    <!-- One product  -->
+
+                                    
+                                    {% for item in items %}
+                                        
+                                    <div class="ref-product" data-id="494001057">
+                                        <div class="ref-product-col"><img class="ref-product-photo" src="{{item.product.imageURL}}"/>
+                                            <div>
+                                                <div class="ref-product-name">{{item.product.brand}} {{item.product.name}}</div>
+                                                <div class="ref-product-secondary">Rs {{item.product.price}} x {{item.quantity}}</div>
+                                                <div class="ref-product-personalization-holder"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="ref-product-total">Rs {{item.get_item_total}}</div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+
+                                    <!-- One product end  -->
+
                                 </div>
-                                <div class="ref-billing-address-holder"></div>
-                            </fieldset>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="ref-tab ref-shipping-tab" data-ref-delivery="shipping"><label class="ref-tab-toggle"><input type="radio" value="shipping" name="delivery-method" required />
-                        <div class="ref-heading-small">Deliver to Address</div>
-                    </label>
-                    <fieldset class="ref-tab-content">
-                        <div class="ref-heading-small">Shipping Address</div>
-                        <div class="ref-shipping-address-holder"></div>
-                        <div class="ref-billing-container">
-                            <div class="ref-button ref-add-billing">Add Billing Info</div>
-                            <fieldset class="ref-billing-address" disabled>
-                                <div class="ref-row">
-                                    <div class="ref-heading-small">Billing Address</div>
-                                    <div class="ref-button ref-remove-billing">Remove</div>
+                                <hr style="display: block;" />
+                                <div class="ref-totals">
+                                    <div class="ref-subtotal">
+                                        <div class="ref-row"><span>Subtotal</span><span>{{order.get_total}}</span></div>
+                                    </div>
+                                    <div class="ref-applied-coupon" style="display: none;">
+                                        <div class="ref-row">
+                                            <div class="ref-row"><span></span><span class="ref-remove-coupon">Remove</span></div><span></span>
+                                        </div>
+                                        <div class="ref-applied-coupon-error"></div>
+                                    </div>
+                                    <div class="ref-shipping" style="display: block;">
+                                        <div class="ref-row"><span>Shipping</span><span>{{order.shipping_price}} (5%)</span></div>
+                                    </div>
+                                    <div class="ref-taxes" style="display: none;">
+                                        <div class="ref-row"><span></span><span></span></div>
+                                    </div>
                                 </div>
-                                <div class="ref-billing-address-holder"></div>
-                            </fieldset>
+                                <hr />
+                                <div class="ref-total">
+                                    <div class="ref-row"><span>Total</span><span>Rs {{order.total_price}}</span></div>
+                                </div>
+                            </div>
+                            <div class="ref-summary-toggle ref-field-collapsible"><span class="ref-field-toggle"><span class="ref-field-toggle-title">Show Summary</span><span class="ref-summary-total">$132.88</span></span></div>
                         </div>
-                        <div class="ref-heading-shipping-methods ref-heading-small">Shipping Method</div>
-                        <div class="ref-shipping-methods ref-error-parent"></div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="ref-tax-note">
-                <hr />
-                <div class="ref-field-collapsible open"><span class="ref-field-toggle"><span class="ref-field-toggle-title">Apply a Tax Exemption</span></span>
-                    <div class="ref-collapse">
-                        <div class="ref-tax-exemption-file">
-                            <div class="ref-old-tax-file"><a class="ref-tax-file-dl" href="#">Tax Exemption File</a><span class="ref-remove-tax-file">Remove</span></div><label class="ref-new-tax-file"><span class="ref-tax-file-label">Attach a document or photo of your tax exemption</span><input id="ref-field-exemption-file" class="ref-form-control" type="file" name="tax-exemption-file" accept=".doc,.docx,.pdf,.jpg,.jpeg,.png" />
-                                <div class="ref-validation-error"></div>
-                            </label>
-                        </div><label class="ref-tax-exemption-text"><span>Enter your EU VAT number</span><input id="ref-field-exemption-text" class="ref-form-control" type="text" name="tax-exemption-text" maxlength="30" />
-                            <div class="ref-validation-error"></div>
-                        </label>
                     </div>
                 </div>
             </div>
-            <hr />
-            <div class="ref-field-collapsible ref-note-to-seller open"><span class="ref-field-toggle"><span class="ref-field-toggle-title">Note to Seller</span></span><label class="ref-collapse"><textarea id="ref-field-note-seller" class="ref-form-control" name="note-to-seller" row="4" maxlength="1000" placeholder="If you have any specific instructions you want to give to the seller, write them here." data-state-src="note"></textarea></label>
-                <div class="ref-validation-error"></div>
-            </div>
-            <hr />
-            <div>
-                <div class="ref-heading ref-heading-payment">Payment</div>
-                <div class="ref-paypal-payment-holder"></div>
-                <div class="ref-standard-payment-buttons"></div>
-            </div>
-        </form>
-        <div class="ref-instructions">
-            <div class="ref-heading ref-payment-method-name"></div>
-            <div class="ref-payment-method-instructions"></div>
-        </div>
-        <div class="ref-links"></div>
-    </div>
-    <div class="ref-checkout-summary">
-        <div class="ref-heading">Order Summary</div>
-        <div class="ref-products"></div>
-        <hr />
-        <div class="ref-coupon-code">
-            <div class="ref-coupon-container">
-                <div class="ref-coupon-input-holder"><input id="ref-coupon-input" class="ref-form-control" name="coupon-code" type="text" maxlength="32" autocomplete="off" placeholder="Enter coupon or promo code" /><span class="ref-coupon-input-clear" title="Clear">✕</span></div>
-                <div class="ref-button ref-button-success ref-add-code inactive">Apply</div>
-            </div>
-            <div class="ref-validation-error"></div>
-        </div>
-        <hr />
-        <div class="ref-totals">
-            <div class="ref-subtotal">
-                <div class="ref-row"><span>Subtotal</span><span></span></div>
-            </div>
-            <div class="ref-applied-coupon">
-                <div class="ref-row">
-                    <div class="ref-row"><span></span><span class="ref-remove-coupon">Remove</span></div><span></span>
-                </div>
-                <div class="ref-applied-coupon-error"></div>
-            </div>
-            <div class="ref-shipping">
-                <div class="ref-row"><span>Shipping</span><span></span></div>
-            </div>
-            <div class="ref-taxes">
-                <div class="ref-row"><span></span><span></span></div>
-            </div>
-        </div>
-        <hr />
-        <div class="ref-total">
-            <div class="ref-row"><span>Total</span><span></span></div>
-            <div class="ref-total-note"></div>
         </div>
     </div>
-    <div class="ref-summary-toggle ref-field-collapsible"><span class="ref-field-toggle"><span class="ref-field-toggle-title">Show Summary</span><span class="ref-summary-total"></span></span></div>
-</div>
+</section>
+
+{% endblock content %}

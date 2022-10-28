@@ -205,9 +205,11 @@
         document.querySelector("#userUsername").innerHTML = response.profileData.username
         document.querySelector("#userEmail").innerHTML = response.profileData.email
         document.querySelector("#userFullname").innerHTML = `${response.profileData.firstname} ${response.profileData.lastname}`
+        alert("Changes Saved");
       },
       error: function(response) {
-        alert(response.errorMessage)
+        console.log(response)
+        alert(response.responseJSON['errorMessage'])
       }
     })
    })
@@ -225,11 +227,11 @@
       zipcode:$("#zip").val()       
     },
     success: function(response) {
-      console.log(response)
       document.querySelector("#addressLine1").innerHTML = response.userDetails.address1
       document.querySelector("#addressLine2").innerHTML = response.userDetails.address2
       document.querySelector("#userLocation").innerHTML = response.userDetails.location
       document.querySelector("#userZipcode").innerHTML = response.userDetails.zipcode
+      alert("Changes Saved");
     },
     error: function(response) {
       alert("Something went wrong")
@@ -237,7 +239,6 @@
   })
   })
   </script>
-
 
 {% endblock scripts %}
   

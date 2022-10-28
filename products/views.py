@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from .models import Mobile
 
 def products(request):
@@ -11,3 +13,7 @@ def product(request, id):
     data = Mobile.objects.get(id=id)
     context = {'mobile':data}
     return render(request, 'products/product.html', context)
+
+@csrf_exempt
+def updateCart(request):
+    return JsonResponse("Item Was Added")

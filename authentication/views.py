@@ -81,7 +81,6 @@ def signup(request):
             messages.warning(request, 'Passwords do not match')
             return redirect('signup')
 
-
     return render(request, 'authentication/signup.html')
 
 def profile(request):
@@ -120,7 +119,7 @@ def updateProfile(request):
 
             return JsonResponse({"profileData":profileData}, status=200)
 
-    else: return JsonResponse({}, status=400)
+    else: return JsonResponse({"errorMessage":"Error"}, status=400)
 
 @csrf_exempt
 def updateDetails(request):
