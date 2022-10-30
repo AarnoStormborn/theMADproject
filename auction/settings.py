@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from os import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,13 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0ke6fr@$0xti6lj257@!#ajq9)^33sz)*!^7sr62yt=sj%bo5s'
+SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = environ.get('DEBUG') == 1
 
 ALLOWED_HOSTS = []
-
+if not DEBUG:
+    ALLOWED_HOSTS += [environ.get('ALLOWED_HOSTS')]
 
 # Application definition
 
@@ -87,10 +89,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'auction', 
-        'USER': 'postgres', 
-        'PASSWORD': 'Dragonite1',
+        'USER': environ.get('DB_USER'), 
+        'PASSWORD': environ.get('DB_PASSWORD'),
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': environ.get('PORT_NUM'),
     }
 }
 
