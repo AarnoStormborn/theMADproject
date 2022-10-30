@@ -16,15 +16,16 @@
                 <div class="ref-product-data">
                     <h2 class="ref-name">{{mobile.brand}} {{mobile.name}}</h2>
                         <div class="ref-product-controls" style="margin-top: 5%; margin-bottom: 5%;">
-                            <span data-reflow-max-qty="999" data-reflow-quantity="1">
+                            <!-- <span data-reflow-max-qty="999" data-reflow-quantity="1">
                                 <div class="ref-quantity-widget">
                                     <div class="ref-decrease"><span></span></div>
                                     <span><input type="text" value="1"/></span>
                                     <div class="ref-increase"><span></span></div>
                                 </div>
-                            </span>
-                            <a class="ref-button" href="#" style="margin-left: 5%;">Buy now</a>
-                            <a class="ref-button" href="#" style="margin-left: 0.5%;">Cart +</a>
+                            </span> -->
+                            <!-- <a class="ref-button" href="#" style="margin-left: 5%;">Buy now</a> -->
+                            <button class="btn btn-outline-primary btn-sm update-cart" data-product="{{mobile.id}}" data-action="add" style="margin-left: 0.5%;">Cart+</button>
+                            <!-- <a class="ref-button" href="#" style="margin-left: 0.5%;">Cart +</a> -->
                         </div>
                     <div class="ref-description" style="margin-top: 5%;">{{mobile.storage}} Storage <br> {{mobile.ram}} RAM <br> {{mobile.display_size}} inch {{mobile.display_type}} display <br><br> Processor {{mobile.processor}}</div>
                     <div class="ref-description" style="margin-top: 5%;">{{mobile.description}}</div>
@@ -35,3 +36,9 @@
     </div>
 </section>
 {% endblock content %}
+
+
+{% block scripts %}
+<script src="{% static 'assets/js/cart.js' %}"></script>
+{% endblock scripts %}
+    

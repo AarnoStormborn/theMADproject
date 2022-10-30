@@ -23,14 +23,16 @@
                                 <div class="ref-quantity-col">Quantity</div>
                                 <div class="ref-total-col">Total</div>
                             </div>
+                            {% if items %}
+
                             <div class="ref-cart-table">
                                 
                                 <!-- One Product  -->
                                 
                                 {% for item in items %}
-                                <div class="ref-product" data-id="494001057" data-quantity="2">
+                                <div class="ref-product">
                                     <div class="ref-product-col">
-                                        <div class="ref-product-wrapper"><img class="ref-product-photo" src="{{item.product.imageURL}}" alt="Vintage Clock" />
+                                        <div class="ref-product-wrapper"><img class="ref-product-photo" src="{{item.product.imageURL}}" alt="" />
                                             <div class="ref-product-data">
                                                 <div class="ref-product-info"><div class="ref-product-name">{{item.product.brand}} {{item.product.name}}</div></div>
                                             </div>
@@ -43,12 +45,13 @@
                                         <div class="ref-product-quantity">
                                             <div class="ref-quantity-container" data-reflow-max-qty="999" data-reflow-quantity="2">
                                                 <div class="ref-quantity-widget">
-                                                    <div class="ref-decrease"><span></span></div><input type="text" value="{{item.quantity}}" />
-                                                    <div class="ref-increase"><span></span></div>
+                                                    <div class="ref-decrease update-cart" data-product="{{item.product.id}}" data-action="remove" data-slider="true"><span></span></div>
+                                                    <input type="text" value="{{item.quantity}}" style="width: 60px;"/>
+                                                    <div class="ref-increase update-cart" data-product="{{item.product.id}}" data-action="add" data-slider="true"><span></span></div>
                                                 </div>
                                             </div>
                                             <div class="ref-product-qty-message"></div>
-                                            <div class="ref-product-remove">Remove</div>
+                                            <button class="btn btn-outline-danger btn-sm update-cart" data-product="{{item.product.id}}" data-action="remove" data-slider="false" style="margin-left: 0.5%; border: none;">Remove</button>
                                         </div>
                                     </div>
                                     <div class="ref-total-col">
@@ -66,10 +69,17 @@
                                 <div class="ref-totals">
                                     <div class="ref-subtotal">Subtotal: Rs. {{order.get_total}}</div>
                                     <div class="ref-row ref-checkout-buttons">
-                                        <a href="{% url 'checkout' %}"><div class="ref-button ref-standard-checkout-button">Checkout</div></a>
+                                        <a href="{% url 'checkout' %}"><button class="btn btn-primary">Checkout</button></a>
                                     </div>
                                 </div>
                             </div>
+
+                            {% else %}
+                            <br>
+                            <div class="container" style="display: flex; justify-content:center;"><h5>Your cart is empty! :(</h5></div> <br>
+                            <div class="container" style="display: flex; justify-content:center;"><h6><a href="{% url 'products' %}">Continue Shopping</a></h6></div>
+
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -79,5 +89,9 @@
 </section>
     
 {% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'assets/js/cart.js' %}"></script>
+{% endblock scripts %}
     
     

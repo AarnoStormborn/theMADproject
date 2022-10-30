@@ -14,9 +14,12 @@
                 </div>
             </div>
             <!-- search bar -->
-            <div class="input-group mb-5">
-                <input type="text" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" style="width: 20px;">
-                <button class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
+            <div class="input-group mb-5" style="display: flex; justify-content: end;">
+              <form action="" method="POST" style="display: flex; flex-direction: row;">
+                {% csrf_token %}
+                <input type="text" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" style="border-radius: 20px 0px 0px 20px;">
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2" style="border-radius: 0px 20px 20px 0px;">Search</button>
+              </form>
               </div>
             <div class="row row-cols-1 row-cols-md-3 g-5">
                 <!-- preferred card -->
@@ -24,7 +27,7 @@
                 {% for mobile in data %}
                 <div class="col-auto mb-4">
                   <div class="card" style="width: 22rem;">
-                    <a href="{% url 'product' mobile.id %}"><img src="{{mobile.imageURL}}" class="card-img-top" alt="img"></a>
+                    <a href="{% url 'product' mobile.id %}"><img src="{{mobile.imageURL}}" class="card-img-top" alt="img" style="background-color: aquawhite;"></a>
                     <div class="card-body">
                       <h4 class="card-title">{{mobile.brand}} {{mobile.name}}</h4>
                       <h5>Rs.{{mobile.price}}</h5>

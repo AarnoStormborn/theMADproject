@@ -29,10 +29,9 @@ class Mobile(models.Model):
         super().save(*args, **kwargs)
         img = Image.open(self.image.path)
 
-        if img.height > 280 or img.width > 280:
-            output_size = (280,280)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+        output_size = (280,280)
+        img.thumbnail(output_size)
+        img.save(self.image.path)
 
 
     class Meta:

@@ -34,7 +34,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     product = models.ForeignKey(Mobile, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
-    quantity = models.PositiveIntegerField(blank=True, null=True, default=1)
+    quantity = models.PositiveIntegerField(blank=True, null=True, default=0)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

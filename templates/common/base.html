@@ -24,24 +24,24 @@
 
 <body style="/*background: url(&quot;design.jpg&quot;);*/background-position: 0 -60px;">
     <nav class="navbar navbar-dark bg-primary navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>Auction</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>PhoneDekho</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Buy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pricing.html">Sell</a></li>
                 </ul>
                 
                 {% if request.user.is_authenticated %}
-                <div class="btn-group dropleft">
+                <div class="btn-group dropright" style="margin-right: 6%;">
                     <div class="btn-group dropleft" role="group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{% static 'assets/img/profile-default.png' %}" alt="" width="30" height="30" style="border-radius: 50%;">
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-left">
+                    <a href="{% url 'userCart' %}" style="margin-right: 25%;" >
+                        <img src="{% static 'assets/img/shopping-cart.jpg' %}" alt="" width="30" height="30" style="border-radius: 50%;">
+                    </a>
+                    <a data-bs-toggle="dropdown">
+                        <img src="{% static 'assets/img/profile.png' %}" alt="" width="30" height="30" style="border-radius: 50%;">
+                    </a>
+                    <div class="dropdown-menu" style="width: 100px;">
                         <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'userCart' %}">Cart</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     </div>
                     </div>
