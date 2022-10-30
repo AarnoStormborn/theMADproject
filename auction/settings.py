@@ -60,6 +60,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://web-production-a3d1.up.railway.app/']   
+
 ROOT_URLCONF = 'auction.urls'
 
 TEMPLATES = [
