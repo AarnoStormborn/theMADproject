@@ -16,7 +16,7 @@ def userCart(request):
         items = []
     
     context = {'items':items, 'order':order}
-    return render(request, 'shopping-cart.html', context) 
+    return render(request, 'user/shopping-cart.html', context) 
 
 def checkout(request):
 
@@ -28,7 +28,7 @@ def checkout(request):
         items = []
     
     context = {'items':items, 'order':order}
-    return render(request, 'checkout.html', context)
+    return render(request, 'user/checkout.html', context)
 
 @csrf_exempt
 def updateCart(request):
@@ -50,7 +50,11 @@ def updateCart(request):
             responseMessage["Message"] = "Item added to Cart"
         if action=='remove':
             orderItem.quantity = (orderItem.quantity - 1)
-            responseMessage["Message"] = "Item removed"
+            responseMessage["Message"] = ""
+        if action=='removeAll':
+            orderItem.quantity = 0
+            responseMessage["Message"] = "Item Removed"
+
 
         orderItem.save()
 

@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    <title>Products</title>
+{% endblock title %}
+    
+{% block content %}
+{% load static %}
+    <section class="py-3">
+        <div class="container py-3">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Search Results</h2>
+                </div>
+            </div>
+
+            
+            {% if not data %}
+              <div class="container" style="display: flex; justify-content:center;"><h5>No Matching Products Found! :(</h5></div> <br>
+              <div class="container" style="display: flex; justify-content:center;"><h6><a href="{% url 'products' %}">Continue Shopping</a></h6></div>
+            {% else %}
+            <div class="row row-cols-1 row-cols-md-3 g-5">
+              <!-- preferred card -->
+              {% for mobile in data %}
+              <div class="col-auto mb-4">
+                <div class="card" style="width: 22rem;">
+                  <a href="{% url 'product' mobile.id %}"><img src="{{mobile.imageURL}}" class="card-img-top" alt="img" style="background-color: aquawhite;"></a>
+                  <div class="card-body">
+                    <h4 class="card-title">{{mobile.brand}} {{mobile.name}}</h4>
+                    <h5>Rs.{{mobile.price}}</h5>
+                    <p class="card-text">{{mobile.storage}} {{mobile.ram}} - {{mobile.display_size}} inch {{mobile.display_type}} display</p>
+                    <button class="btn btn-outline-primary btn-sm update-cart" data-product="{{mobile.id}}" data-action="add" style="margin-top: 2%;margin-left: 65%;">Cart+</button>
+                  </div>
+                </div>
+              </div>
+              <!-- preferred card -->
+              {% endfor %}
+            </div>
+            {% endif %}
+              
+        
+            
+        </div>
+    </section>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'assets/js/cart.js' %}"></script>
+{% endblock scripts %}
+  
+
+

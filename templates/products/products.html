@@ -15,10 +15,10 @@
             </div>
             <!-- search bar -->
             <div class="input-group mb-5" style="display: flex; justify-content: end;">
-              <form action="" method="POST" style="display: flex; flex-direction: row;">
+              <form action="{% url 'searchProducts' %}" method="GET" id="search" style="display: flex; flex-direction: row;">
                 {% csrf_token %}
-                <input type="text" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" style="border-radius: 20px 0px 0px 20px;">
-                <button class="btn btn-outline-primary" type="submit" id="button-addon2" style="border-radius: 0px 20px 20px 0px;">Search</button>
+                <input type="text" class="form-control" name="query" id="searchBar" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2" style="border-radius: 20px 0px 0px 20px;" required>
+                <button class="btn btn-outline-primary" type="submit" style="border-radius: 0px 20px 20px 0px;">Search</button>
               </form>
               </div>
             <div class="row row-cols-1 row-cols-md-3 g-5">
