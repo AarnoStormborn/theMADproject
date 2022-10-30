@@ -9,7 +9,7 @@ from django.contrib import messages
 from .models import Profile
 
 def index(request):
-    return render(request, 'home/index.html')
+    return render(request, 'index.html')
 
 @never_cache
 def login(request):
