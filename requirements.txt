@@ -29,7 +29,6 @@ pathspec==0.9.0
 Pillow==9.2.0
 psycopg2==2.9.3
 pydantic==1.9.1
-pywin32==304
 PyYAML==5.4.1
 requests==2.26.0
 semantic-version==2.8.5
